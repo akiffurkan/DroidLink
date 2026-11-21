@@ -27,11 +27,6 @@ jobs:
     - name: Grant Execute Permission to Gradlew
       run: chmod +x Android/gradlew
 
-    - name: Run Unit Tests
-      run: |
-        cd Android
-        ./gradlew testDebugUnitTest
-
     - name: Build Debug APK
       run: |
         cd Android

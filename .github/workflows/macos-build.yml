@@ -9,38 +9,34 @@ on:
 
 jobs:
   build-macos:
-    runs-on: macos-14
+    runs-on: macos-15
 
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
-    - name: Select Xcode
-      run: sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+    - name: Show System Info
+      run: |
+        uname -a
+        sw_vers
+        swift --version
 
     - name: Run Swift Unit Tests
       run: |
         cd macOS
         swift test
 
-    - name: Build Universal Binary (Intel x86_64 + Apple Silicon arm64)
+    - name: Build Universal App (x86_64 + arm64)
       run: |
         cd macOS
-        # Intel x86_64 Derlemesi (Hackintosh i9-13900HX uyumlu)
-        swift build -c release --triple x86_64-apple-macosx
-        # Apple Silicon arm64 Derlemesi
-        swift build -c release --triple arm64-apple-macosx
+        swift build -c release --arch arm64 --arch x86_64
         
-        # Universal Fat Binary oluştur
         mkdir -p build/universal
-        lipo -create \
-          .build/x86_64-apple-macosx/release/DroidLink \
-          .build/arm64-apple-macosx/release/DroidLink \
-          -output build/universal/DroidLink
-          
+        BIN_PATH=$(find .build -type f -name "DroidLink" -perm +111 | grep -E "Release|release" | head -n 1)
+        cp "$BIN_PATH" build/universal/DroidLink
         lipo -info build/universal/DroidLink
 
-    - name: Package macOS App Bundle
+    - name: Create macOS App Bundle
       run: |
         cd macOS
         mkdir -p "build/DroidLink.app/Contents/MacOS"
@@ -49,7 +45,6 @@ jobs:
         cp build/universal/DroidLink "build/DroidLink.app/Contents/MacOS/DroidLink"
         chmod +x "build/DroidLink.app/Contents/MacOS/DroidLink"
         
-        # Basit Info.plist
         cat << 'EOF' > "build/DroidLink.app/Contents/Info.plist"
         <?xml version="1.0" encoding="UTF-8"?>
         <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
