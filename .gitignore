@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+*.swp
+*.lock
+
+# Xcode & Swift
+.build/
+*.xcodeproj
+*.xcworkspace
+xcuserdata/
+DerivedData/
+
+# Android / Gradle
+.gradle/
+build/
+app/build/
+*.iml
+.idea/
+local.properties
+*.apk
+*.aab
+
+# VS Code / General
+.vscode/
+*.log

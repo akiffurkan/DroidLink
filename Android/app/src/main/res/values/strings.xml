@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DroidLink</string>
+    <string name="service_notification_title">DroidLink Aktif</string>
+    <string name="service_notification_desc">Mac ile yerel bağlantı dinleniyor...</string>
+    <string name="battery_level">Pil Seviyesi</string>
+    <string name="charging">Şarj Ediliyor</string>
+    <string name="not_charging">Şarj Edilmiyor</string>
+</resources>

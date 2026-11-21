@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PairingPayload",
+  "type": "object",
+  "required": [
+    "deviceId",
+    "deviceName",
+    "deviceType",
+    "pairingCode",
+    "publicKey",
+    "protocolVersion"
+  ],
+  "properties": {
+    "deviceId": { "type": "string" },
+    "deviceName": { "type": "string" },
+    "deviceType": { "type": "string", "enum": ["macOS", "android"] },
+    "pairingCode": { "type": "string" },
+    "publicKey": { "type": "string" },
+    "protocolVersion": { "type": "integer", "default": 1 },
+    "authToken": { "type": ["string", "null"] }
+  }
+}

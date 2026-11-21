@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BatteryPayload",
+  "type": "object",
+  "required": [
+    "deviceId",
+    "deviceName",
+    "batteryLevel",
+    "isCharging",
+    "chargingSource",
+    "timestamp",
+    "protocolVersion"
+  ],
+  "properties": {
+    "deviceId": { "type": "string" },
+    "deviceName": { "type": "string" },
+    "batteryLevel": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "isCharging": { "type": "boolean" },
+    "chargingSource": { "type": "string", "enum": ["none", "ac", "usb", "wireless", "unknown"] },
+    "temperature": { "type": ["number", "null"] },
+    "health": { "type": ["string", "null"] },
+    "voltage": { "type": ["integer", "null"] },
+    "timestamp": { "type": "integer" },
+    "protocolVersion": { "type": "integer", "default": 1 }
+  }
+}

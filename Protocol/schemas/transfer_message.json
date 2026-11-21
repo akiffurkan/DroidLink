@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TransferPayload",
+  "type": "object",
+  "required": [
+    "transferId",
+    "fileName",
+    "fileSize",
+    "mimeType",
+    "checksumSha256"
+  ],
+  "properties": {
+    "transferId": { "type": "string" },
+    "fileName": { "type": "string" },
+    "fileSize": { "type": "integer", "minimum": 0 },
+    "mimeType": { "type": "string" },
+    "checksumSha256": { "type": "string" },
+    "chunkIndex": { "type": "integer" },
+    "totalChunks": { "type": "integer" },
+    "status": { "type": "string", "enum": ["PENDING", "TRANSFERRING", "PAUSED", "COMPLETED", "FAILED", "CANCELLED"] }
+  }
+}
