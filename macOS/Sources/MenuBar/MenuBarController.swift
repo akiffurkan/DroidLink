@@ -9,6 +9,9 @@ public final class MenuBarController: NSObject {
     private let batteryViewModel: BatteryViewModel
     private var cancellables = Set<AnyCancellable>()
     private var fileTransferWindow: NSWindow?
+    private var settingsWindow: NSWindow?
+    private var pairingWindow: NSWindow?
+    private let pairingViewModel = PairingViewModel()
     
     public init(batteryViewModel: BatteryViewModel) {
         self.batteryViewModel = batteryViewModel
@@ -40,8 +43,8 @@ public final class MenuBarController: NSObject {
             onOpenFileTransfer: { [weak self] in
                 self?.openFileTransferWindow()
             },
-            onOpenSettings: {
-                // Ayarlar penceresi
+            onOpenSettings: { [weak self] in
+                self?.openSettingsWindow()
             }
         )
         
@@ -102,6 +105,48 @@ public final class MenuBarController: NSObject {
         }
         
         fileTransferWindow?.makeKeyAndOrderFront(nil)
+        NSApp.activate(ignoringOtherApps: true)
+    }
+    
+    public func openSettingsWindow() {
+        popover.performClose(nil)
+        
+        if settingsWindow == nil {
+            let window = NSWindow(
+                contentRect: NSRect(x: 0, y: 0, width: 440, height: 360),
+                styleMask: [.titled, .closable],
+                backing: .buffered,
+                defer: false
+            )
+            window.title = "DroidLink — Ayarlar"
+            window.center()
+            window.isReleasedWhenClosed = false
+            window.contentView = NSHostingView(rootView: SettingsView())
+            settingsWindow = window
+        }
+        
+        settingsWindow?.makeKeyAndOrderFront(nil)
+        NSApp.activate(ignoringOtherApps: true)
+    }
+    
+    public func openPairingWindow() {
+        popover.performClose(nil)
+        
+        if pairingWindow == nil {
+            let window = NSWindow(
+                contentRect: NSRect(x: 0, y: 0, width: 360, height: 320),
+                styleMask: [.titled, .closable],
+                backing: .buffered,
+                defer: false
+            )
+            window.title = "DroidLink — Cihaz Eşleştirme"
+            window.center()
+            window.isReleasedWhenClosed = false
+            window.contentView = NSHostingView(rootView: PairingView(viewModel: pairingViewModel))
+            pairingWindow = window
+        }
+        
+        pairingWindow?.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
     }
 }

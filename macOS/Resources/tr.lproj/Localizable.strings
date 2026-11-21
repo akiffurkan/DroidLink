@@ -1,0 +1,17 @@
+/* DroidLink Turkish Localization */
+"app_name" = "DroidLink";
+"battery_status" = "Pil Durumu";
+"connected" = "Bağlı";
+"connecting" = "Bağlanıyor...";
+"disconnected" = "Bağlantı Yok";
+"reconnecting" = "Yeniden Bağlanıyor...";
+"file_transfer" = "Dosya Transferi";
+"send_file" = "Dosya Gönder";
+"drop_files_here" = "Telefona göndermek için dosyaları buraya sürükleyin";
+"charging_ac" = "AC Priz ile Hızlı Şarj";
+"charging_usb" = "USB ile Şarj Ediliyor";
+"charging_wireless" = "Kablosuz Şarj";
+"not_charging" = "Pilden Kullanılıyor";
+"settings" = "Ayarlar";
+"reconnect" = "Yeniden Bağlan";
+"disconnect" = "Bağlantıyı Kes";

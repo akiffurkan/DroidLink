@@ -1,0 +1,17 @@
+/* DroidLink English Localization */
+"app_name" = "DroidLink";
+"battery_status" = "Battery Status";
+"connected" = "Connected";
+"connecting" = "Connecting...";
+"disconnected" = "Disconnected";
+"reconnecting" = "Reconnecting...";
+"file_transfer" = "File Transfer";
+"send_file" = "Send File";
+"drop_files_here" = "Drop files here to send to phone";
+"charging_ac" = "Fast Charging (AC)";
+"charging_usb" = "USB Charging";
+"charging_wireless" = "Wireless Charging";
+"not_charging" = "Discharging";
+"settings" = "Settings";
+"reconnect" = "Reconnect";
+"disconnect" = "Disconnect";

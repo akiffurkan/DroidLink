@@ -15,6 +15,7 @@ import androidx.core.app.NotificationCompat
 import com.droidlink.MainActivity
 import com.droidlink.R
 import com.droidlink.battery.BatteryMonitor
+import com.droidlink.filetransfer.FileTransferServer
 import com.droidlink.networking.DroidWebSocketServer
 import com.droidlink.networking.NsdHelper
 import kotlinx.coroutines.CoroutineScope
@@ -33,6 +34,7 @@ class DroidLinkForegroundService : Service() {
 
     private lateinit var batteryMonitor: BatteryMonitor
     private var webSocketServer: DroidWebSocketServer? = null
+    private var fileTransferServer: FileTransferServer? = null
     private lateinit var nsdHelper: NsdHelper
 
     private val _connectedClientCount = MutableStateFlow(0)
@@ -63,8 +65,12 @@ class DroidLinkForegroundService : Service() {
                 updateNotification("Bağlı Cihaz: $count")
             }
             webSocketServer?.start()
+
+            fileTransferServer = FileTransferServer(this, 8766)
+            fileTransferServer?.start()
+
             nsdHelper.registerService(8765)
-            updateNotification("Mac bağlantısı bekleniyor (Port 8765)")
+            updateNotification("Mac bağlantısı bekleniyor (Port 8765 & 8766)")
         } catch (e: Exception) {
             Log.e("ForegroundService", "Sunucu başlatma hatası", e)
         }
@@ -121,6 +127,7 @@ class DroidLinkForegroundService : Service() {
         scope.cancel()
         batteryMonitor.stopMonitoring()
         nsdHelper.unregisterService()
+        fileTransferServer?.stop()
         try {
             webSocketServer?.stop()
         } catch (e: Exception) {
