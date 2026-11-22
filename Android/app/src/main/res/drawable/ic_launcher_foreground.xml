@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:scaleX="0.5"
+        android:scaleY="0.5"
+        android:translateX="27"
+        android:translateY="27">
+        <!-- Phone Outline -->
+        <path
+            android:fillColor="#00E676"
+            android:pathData="M70,10H38C33.6,10 30,13.6 30,18v72c0,4.4 3.6,8 8,8h32c4.4,0 8,-3.6 8,-8V18C78,13.6 74.4,10 70,10zM54,92c-2.2,0 -4,-1.8 -4,-4s1.8,-4 4,-4 4,1.8 4,4 -1.8,4 -4,4zM72,80H36V22h36v58z" />
+        <!-- Lightning bolt inside screen -->
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M56,32l-12,16h8l-4,18 14,-18h-8z" />
+    </group>
+</vector>
